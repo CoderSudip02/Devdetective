@@ -20,7 +20,7 @@ const repos=get("repos");
 const followers=get("followers");
 const following=get("following");
 const user_location= get("location");
-const page=get("page");
+const page = document.getElementById("page");
 const twitter=get("twitter");
 const company=get("company");
 const profileContainer=get("profile-container");
@@ -36,7 +36,7 @@ console.log("starting...");
 
 //Whenerver loading the page for the first time an initial function will be called
 function init(){
-    getuserprofile(url + "thepranaygupta");
+    getuserprofile(url + "codersudip02");
     console.log("at the 1st page...");
 
 
@@ -102,15 +102,16 @@ function render(data){
         avatar.src= `${data.avatar_url}`;
         userName.innerText= data.login == null ? data.login : data.name;
         user.innerText=`@${data.login}`;
+        user.href= checkNull(data.login,user) && data.login!=="" ? `https://github.com/${data.login}` : "#";
         datasegments= data.created_at.split("T").shift().split("-");
         date.innerText=`Joined ${datasegments[2]} ${months[datasegments[1]-1]} ${datasegments[0]}`;
         bio.innerText= data.bio == null ? "This profile has no bio" : `${data.bio}`;
         repos.innerText=`${data.public_repos}`;
         followers.innerText=`${data.followers}`;
         following.innerText=`${data.following}`;
-        user_location.innerText=checkNull(data.blog,page) ? data.blog :"Not Available";
-        page.innerText = checkNull(data.blog, page) ? data.page : "Not Available";
-        page.href= checkNull(data.blog, page) ? data.blog : "#";
+        user_location.innerText=checkNull(data.location,user_location) ? data.location :"Not Available";
+        page.innerText = checkNull(data.blog, page) && data.blog != "" ? data.page : "Not Available";
+        page.href= checkNull(data.blog, page) && data.blog!=="" ? data.blog : "#";
         twitter.innerText = checkNull(data.twitter_username, twitter) && data.twitter_username !== "" ? data.twitter_username : "Not Available";
         twitter.href = checkNull(data.twitter_username, twitter) && data.twitter_username !== "" ? `https://twitter.com/${data.twitter_username}` : "#";       
         company.innerText= checkNull(data.company, company) ? data.company : "Not Available";
