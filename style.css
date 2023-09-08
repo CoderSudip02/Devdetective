@@ -245,6 +245,15 @@ opacity: 0.75;
   box-shadow: var(--lm-shadow);
 }
 
+.error {
+  position: absolute;
+  color: red;
+  font-weight: bold;
+  right: 10px;
+  top: -25px;
+}
+
+/* Media quires */
 
 @media screen and (min-width: 768px) {
   .wrapper{

@@ -36,11 +36,27 @@ console.log("starting...");
 
 //Whenerver loading the page for the first time an initial function will be called
 function init(){
-    getuserprofile(url + "codersudip02");
-    console.log("at the 1st page...");
+    const value = localStorage.getItem("dark-mode");
+    
+    if(value === null) {
+      console.log("null k andar");
+      localStorage.setItem("dark-mode", darkMode);
+      lightModeProperties();
+    }
+    else if(value == "true") {
+      console.log("truer k andar");
+      darkModeProperties();
+    }
+    else if(value == "false") {
+      console.log("false k andar");
+      lightModeProperties();
+    }
+    
+    
+    //by default, pranaygupta ki info show krre h UI pr
+    getuserprofile(url + "thepranaygupta");
+    }
 
-
-};
 init();
 
 
@@ -52,8 +68,9 @@ function darkModeProperties(){
     root.setProperty("--lm-shadow-xl", "rgba(70,88,109,0.15)");
     currentMode.innerText="LIGHT";
     modeicon.src="./assets/images/sun-icon.svg";
-    root.setProperty("--lm-icon-bg", "brightness(1000%)");
+    root.setProperty("--lm-icon-bg", "brightness(100%)");
     darkMode = true;
+    localStorage.setItem("dark-mode", true); 
 };
 
 function lightModeProperties(){
@@ -63,9 +80,10 @@ function lightModeProperties(){
     root.setProperty("--lm-text-alt", "#2B3442");
     root.setProperty("--lm-shadow-xl", "rgba(70, 88, 109, 0.25)");
     currentMode.innerText = "DARK";
-    currentMode.src = "./assets/images/moon-icon.svg";
+    modeicon.src = "./assets/images/moon-icon.svg";
     root.setProperty("--lm-icon-bg", "brightness(100%)");
     darkMode = false;  
+    localStorage.setItem("dark-mode", false);
 };
 
 //API Call
@@ -110,7 +128,7 @@ function render(data){
         followers.innerText=`${data.followers}`;
         following.innerText=`${data.following}`;
         user_location.innerText=checkNull(data.location,user_location) ? data.location :"Not Available";
-        page.innerText = checkNull(data.blog, page) && data.blog != "" ? data.page : "Not Available";
+        page.innerText = checkNull(data.blog, page) ? data.blog : "Not Available";
         page.href= checkNull(data.blog, page) && data.blog!=="" ? data.blog : "#";
         twitter.innerText = checkNull(data.twitter_username, twitter) && data.twitter_username !== "" ? data.twitter_username : "Not Available";
         twitter.href = checkNull(data.twitter_username, twitter) && data.twitter_username !== "" ? `https://twitter.com/${data.twitter_username}` : "#";       
