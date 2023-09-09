@@ -361,8 +361,8 @@ opacity: 0.75;
   }
 
   .error {
-    top: 50%;
-    right: 20%;
+    top: -20%;
+    right: 5%;
     transform: translateY(-50%);
     font-size: 15px;
   }
