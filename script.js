@@ -54,7 +54,7 @@ function init(){
     
     
     //by default, pranaygupta ki info show krre h UI pr
-    getuserprofile(url + "thepranaygupta");
+    getuserprofile(url + "codersudip02");
     }
 
 init();
