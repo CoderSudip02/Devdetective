@@ -8,7 +8,7 @@ User Lookup: Simply enter the username of the GitHub user you want to investigat
 2. User Profile Information
 User Details: View a summary of the GitHub user's profile, including their name, bio, avatar, followers, following and repositories counts.
 
-3. Other information
+3. Other information:
 Also user's location, webpage, twitter handle and current company if available.
 
 # Acknowledgments
